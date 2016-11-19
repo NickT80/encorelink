@@ -1,147 +1,397 @@
 import React, { PropTypes } from 'react';
-import { withRouter } from 'react-router';
+import { Field, reduxForm } from 'redux-form';
 
-class MusicanProfile extends React.Component {
-  static propTypes = {
-    errorMessage: PropTypes.string
-  };
 
-  render() {
-    return (
-      <div className="row">
-        <div className="small-12 columns">
-          <h1>Create Your Profile</h1>
+const MusicianProfile = ({ handleSubmit, errorMessage}) =>(
 
-          <form className="form-create-event" onSubmit={this.handleFormSubmit}>
-            <div className="small-7 small-offset-2 columns">
-              <label>Phone Number:
-                <input type="phone" placeholder="(xxx)-xxx-xxx" onChange={this.handleMusicianPhoneChange} required />
+  <div className="row">
+    <div className="small-12 columns">
+      <h1>Create Your Profile</h1>
+
+      <form className="form-create-event" onSubmit={handleSubmit}>
+        <div className="small-7 small-offset-2 columns">
+          <label>Phone Number
+            <Field
+              name="phone number"
+              component="input"
+              type="number"
+              placeholder="(xxx)-xxx-xxxx"
+              required
+              autoFocus
+            />
+          </label>
+        </div>
+
+        <div className="small-5 small-offset-2 columns">
+          <label>Date of Birth
+            <Field
+              name="date of birth"
+              component="input"
+              type="datetime"
+              placeholder="date"
+              required
+            />
+          </label>
+        </div>
+
+        <div className="small-9 small-offset-2 columns">
+          <label>Address
+            <Field
+              name="address"
+              component="input"
+              type="text"
+              placeholder="Location"
+              required
+            />
+          </label>
+        </div>
+
+        <div className="small-5 small-offset-2 columns">
+          <input
+            className="button"
+            type="upload file"
+            value="Upload File"
+          />
+        </div>
+
+        <div className="small-5 small-offset-2 columns">
+          <label>Education
+            <Field
+              name="education"
+              component="input"
+              type="text"
+              placeholder="Education"
+              required
+            />
+          </label>
+        </div>
+
+        <div className="small-5 small-offset-2 columns">
+          <label>University/Convervatory
+            <Field
+              name="university"
+              component="input"
+              type="text"
+              placeholder="University/Convervatory"
+              required
+            />
+          </label>
+        </div>
+
+        <div className="small-12 small-offset-2 columns">
+          <div className="row">
+            <div className="small-12 medium-7 columns">
+              <label>Degree
+                <Field
+                  name="degree"
+                  component="input"
+                  type="text"
+                  placeholder="Degree"
+                  required
+                />
               </label>
             </div>
-
-            <div className="small-5 small-offset-2 columns">
-              <label>Date of Birth:
-                <input type="date" placeholder="mm-dd-yyyy" onChange={this.handleMusicianDOBChange} required />
+            <div className="small-12 medium-5 columns">
+              <label>Major
+                <Field
+                  name="major"
+                  component="input"
+                  type="text"
+                  placeholder="Major"
+                  required
+                />
               </label>
             </div>
-
-            <div className="small-9 small-offset-2 columns">
-              <label>Home City, State/ Zipcode:
-                <input type="text" onChange={this.handleMusicianAddressChange} required />
-              </label>
-            </div>
-
-            <div className="small-5 small-offset-2 columns">
-              <label htmlFor="musicianProfilePicture" className="button"><i className="torso"> Upload File</i></label>
-              <input type="file" id="musicianProfilePicture" className="show-for-sr" />
-            </div>
-
-            <div className="small-5 small-offset-2 columns">
-              <label>Education:
-                <input type="text" onChange={this.handleMusicianEducationChange} required />
-              </label>
-            </div>
-
-            <div className="small-5 small-offset-2 columns">
-              <label>University/Convervatory:
-                <input type="text" onChange={this.handleMusicianUniversityChange} required />
-              </label>
-            </div>
-
-            <div className="small-12 small-offset-2 columns">
-              <div className="row">
-                <div className="small-12 medium-7 columns">
-                  <label>Degree:
-                    <input type="text" onChange={this.handleMusicianDegreeChange} required />
-                  </label>
-                </div>
-                <div className="small-12 medium-5 columns">
-                  <label>Major:
-                    <input type="text" onChange={this.handleMusicianMajorChange} required />
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="small-12 small-offset-2 columns">
-              <label>Year:</label>
-              <label htmlFor="isFreshman"><input type="radio" name="isFreshman" onChange={this.handleIsFreshmanChange} value="freshman" id="isFreshman" />Freshman</label>
-              <label htmlFor="isSophmore"><input type="radio" name="isSophmore" onChange={this.handleIsSophmoreChange} value="sophomore" id="isSophmore" />Sophomore</label>
-              <label htmlFor="isJunior"><input type="radio" name="isJunior" onChange={this.handleIsJuniorChange} value="junior" id="isJunior" />Junior</label>
-              <label htmlFor="isSenior"><input type="radio" name="isSenior" onChange={this.handleIsSeniorChange} value="senior" id="isSenior" />Senior</label>
-              <label htmlFor="isMaster"><input type="radio" name="isMaster" onChange={this.handleIsMasterChange} value="master" id="isMaster" />Master</label>
-              <label htmlFor="isDoctoral"><input type="radio" name="isDoctoral" onChange={this.handleIsDoctoralChange} value="Doctoral" id="isDoctoral" />Doctoral</label>
-              <label htmlFor="isAlumni"><input type="radio" name="isAlumni" onChange={this.handleIsAlumniChange} value="alumni" id="isAlumni" />Alumni</label>
-
-              <div>
-                <p>[+] (Add another education institution/degree)</p>
-              </div>
-            </div>
-
-            <div className="small-12 small-offset-2 columns">
-              <div>
-                <h3>About your music You share:</h3>
-              </div>
-            </div>
-
-            <div className="small-5 small-offset-2 columns">
-              <div>
-                <label>Major instrument(s):</label>
-                <input type="text" onChange={this.handleInstrument} />
-              </div>
-            </div>
-
-            <div className="small-12 small-offset-2 columns">
-              <label>Genre/Style:</label>
-              <label htmlFor="isClassical"><input type="checkbox" name="isClassical" onChange={this.handleIsClassicalChange} value="classical" id="isClassical" />Classical</label>
-              <label htmlFor="isJazz"><input type="checkbox" name="isJazz" onChange={this.handleIsJazzChange} value="jazz" id="isJazz" />Jazz</label>
-              <label htmlFor="isCountry"><input type="checkbox" name="isCountry" onChange={this.handleIsCountryChange} value="country" id="isCountry" />Country</label>
-              <label htmlFor="isBlue"><input type="checkbox" name="isBlue" onChange={this.handleIsBlueChange} value="blue" id="isBlue" />Blue</label>
-              <label htmlFor="is30s"><input type="checkbox" name="is30s" onChange={this.handleIs30sChange} value="30s" id="is30s" />30s</label>
-              <label htmlFor="is40s"><input type="checkbox" name="is40s" onChange={this.handleIs40sChange} value="40s" id="is40s" />40s</label>
-              <label htmlFor="is50s"><input type="checkbox" name="is50s" onChange={this.handleIs50sChange} value="50s" id="is50s" />50s</label>
-              <label htmlFor="is60s"><input type="checkbox" name="is60s" onChange={this.handleIs60sChange} value="60s" id="is60s" />60s</label>
-              <label htmlFor="isWorldMusic"><input type="checkbox" name="isWorldMusic" onChange={this.handleIsWorldMusicChange} value="worldMusic" id="isWorldMusic" />World Music</label>
-              <label htmlFor="isOthersGenre"><input type="checkbox" name="isOthersGenre" onChange={this.handleIsOthersGenreChange} value="othersGenre" id="isOthersGenre" />Others</label>
-            </div>
-
-            <div className="small-12 columns">
-              <label>Why Do you want to volunteer:</label>
-              <label htmlFor="isShareMusic"><input type="checkbox" name="isShareMusic" onChange={this.handleIsShareMusicChange} value="shareMusic" id="isShareMusic" />Share music</label>
-              <label htmlFor="isGrainExperience"><input type="checkbox" name="isGrainExperience" onChange={this.handleIsGrainExperienceChange} value="grainExperience" id="isGrainExperience" />Grain performance experience</label>
-              <label htmlFor="isTeacherSuggestion"><input type="checkbox" name="isTeacherSuggestion" onChange={this.handleIsTeacherSuggestionChange} value="teacherSuggestion" id="isTeacherSuggestion" />Teacher suggestion</label>
-              <label htmlFor="isEnsentiveRequireents"><input type="checkbox" name="isEnsentiveRequireents" onChange={this.handleIsEnsentiveRequireentsChange} value="ensentiveRequireents" id="isEnsentiveRequireents" />Ensentive requireents</label>
-              <label htmlFor="isCurious"><input type="checkbox" name="isCurious" onChange={this.handleIsCuriousChange} value="curious" id="isCurious" />Curious about the organization</label>
-              <label htmlFor="isOtherReason"><input type="checkbox" name="isOtherReason" onChange={this.handleIsOtherReasonChange} value="otherReason" id="isOtherReason" />Other</label>
-            </div>
-
-            <div className="small-12 columns">
-              <label>Video or Audio file link:</label>
-              <div className="input-group">
-                <input className="input-group-field" type="number" />
-                <div className="input-group-button">
-                  <input type="submit" className="button" value="Upload Link" />
-                </div>
-              </div>
-            </div>
-
-            <div className="small-8 columns">
-              <label>Profile:</label>
-              <textarea onChange={this.handleIsProfile} />
-            </div>
-
-            <div className="small-12 medium-12 columns">
-              <button type="submit" className="button">Save Changes</button>
-            </div>
-          </form>
-          <div>
-            <span>{this.props.errorMessage}</span>
           </div>
         </div>
+
+        <div className="small-8 small-offset-2 columns">
+          <div className="radio">
+            <label>Year:
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Freshman"
+                  required
+                /> Freshman
+              </label>
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Sophomore"
+                  required
+                /> Sophomore
+              </label>
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Junior"
+                  required
+                /> Junior
+              </label>
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Senior"
+                  required
+                />Senior
+              </label>
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Master"
+                  required
+                />Master
+              </label>
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Doctoral"
+                  required
+                />Doctoral
+              </label>
+              <label className="radio-label">
+                <Field
+                  name="year"
+                  component="input"
+                  type="radio"
+                  value="Alumni"
+                  required
+                />Alumni
+              </label>
+            </label>
+
+            <div>
+              <p>[+] (Add another education institution/degree)</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="small-12 small-offset-2 columns">
+          <div>
+            <h3>About your music You share:</h3>
+          </div>
+        </div>
+
+        <div className="small-5 small-offset-2 columns">
+          <label>Major Instrument(s)
+            <Field
+              name="major instrument"
+              component="input"
+              type="text"
+              placeholder="Major Instrument"
+              required
+            />
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="classical"
+              component="input"
+              type="checkbox"
+              value="Classical"
+              required
+            />Classical
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="jazz"
+              component="input"
+              type="checkbox"
+              value="Jazz"
+              required
+            />Jazz
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="country"
+              component="input"
+              type="checkbox"
+              value="Country"
+              required
+            />Country
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="bluegrass"
+              component="input"
+              type="checkbox"
+              value="Bluegrass"
+              required
+            />Bluegrass
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="30s"
+              component="input"
+              type="checkbox"
+              value="30s"
+              required
+            />30s
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="40s"
+              component="input"
+              type="checkbox"
+              value="40s"
+              required
+            />40s
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="50s"
+              component="input"
+              type="checkbox"
+              value="50s"
+              required
+            />50s
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="60s"
+              component="input"
+              type="checkbox"
+              value="60s"
+              required
+            />60s
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="world music"
+              component="input"
+              type="checkbox"
+              value="World Music"
+              required
+            />World Music
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="others"
+              component="input"
+              type="checkbox"
+              value="Others"
+              required
+            />Others
+          </label>
+        </div>
+
+        <div className="small-12 columns">
+          <label>Why do you want to voluteer:</label>
+          <label className="checkbox-label">
+            <Field
+              name="share music"
+              component="input"
+              type="checkbox"
+              value="Share Music"
+              required
+            />Share Music
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="gain performance experience"
+              component="input"
+              type="checkbox"
+              value="Gain Performance Experience"
+              required
+            />Gain Performance Experience
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="teacher suggestion"
+              component="input"
+              type="checkbox"
+              value="Teacher suggestion"
+              required
+            />Teacher suggestion
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="ensernbie requirements"
+              component="input"
+              type="checkbox"
+              value="Ensernbie Requirements"
+              required
+            />Ensernbie Requirements
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="curious about the organization"
+              component="input"
+              type="checkbox"
+              value="Curious about the organization"
+              required
+            />Curious about the organization
+          </label>
+          <label className="checkbox-label">
+            <Field
+              name="others"
+              component="input"
+              type="checkbox"
+              value="Others"
+              required
+            />Others
+          </label>
+        </div>
+
+        <div className="small-12 columns">
+          <label>Video or Audio file link:
+            <Field
+              name="link"
+              component="input"
+              type="text"
+              placeholder="Link"
+              required
+            />
+            <input
+              className="button"
+              type="upload file"
+              value="Upload"
+            />
+          </label>
+        </div>
+
+        <div className="small-10 columns">
+          <label>Profile:
+            <Field
+              name="link"
+              component="textarea"
+              type="text"
+              required
+            />
+            <input
+              className="button"
+              type="upload file"
+              value="Save Change"
+            />
+          </label>
+        </div>
+
+      </form>
+      <div>
+        <span>{errorMessage}</span>
       </div>
-    );
-  }
-}
+    </div>
+  </div>
+);
 
 
-export default withRouter(MusicanProfile);
+MusicianProfile.propType = {
+  handleSubmit: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
+};
+
+export default reduxForm({
+  form: 'musicianProfileForm'
+})(MusicianProfile);
