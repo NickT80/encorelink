@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Autocomplete from 'react-google-autocomplete';
 
 
-const MusicianProfile = ({ handleSubmit, errorMessage}) =>(
+const MusicianProfile = ({ handleSubmit }) => (
 
   <div className="row">
     <div className="small-12 columns">
@@ -27,7 +28,7 @@ const MusicianProfile = ({ handleSubmit, errorMessage}) =>(
             <Field
               name="date of birth"
               component="input"
-              type="datetime"
+              type="date"
               placeholder="date"
               required
             />
@@ -36,17 +37,20 @@ const MusicianProfile = ({ handleSubmit, errorMessage}) =>(
 
         <div className="small-9 small-offset-2 columns">
           <label>Address
-            <Field
-              name="address"
-              component="input"
-              type="text"
-              placeholder="Location"
-              required
+            <Field name="address" component={props =>
+              <Autocomplete
+                type="text"
+                name="address"
+                style={{ width: '100%' }}
+                onPlaceSelected={param => props.input.onChnage(param.name + ', ' + param.formatted_address)}
+                type={[]}
+              />}
             />
           </label>
         </div>
 
         <div className="small-5 small-offset-2 columns">
+          <img className="logo-img" src="/public/img/encorelink-logo.png" alt="EncoreLink" />
           <input
             className="button"
             type="upload file"
@@ -357,7 +361,7 @@ const MusicianProfile = ({ handleSubmit, errorMessage}) =>(
             <input
               className="button"
               type="upload file"
-              value="Upload"
+              value="Upload link"
             />
           </label>
         </div>
@@ -379,17 +383,13 @@ const MusicianProfile = ({ handleSubmit, errorMessage}) =>(
         </div>
 
       </form>
-      <div>
-        <span>{errorMessage}</span>
-      </div>
     </div>
   </div>
 );
 
 
 MusicianProfile.propType = {
-  handleSubmit: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default reduxForm({
