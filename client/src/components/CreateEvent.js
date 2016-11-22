@@ -4,7 +4,7 @@ import Autocomplete from 'react-google-autocomplete';
 
 import FormattedFormField from './FormattedFormField';
 
-const CreateEvent = ({ handleSubmit, errorMessage }) => (
+const CreateEvent = ({ handleSubmit }) => (
   <div className="row">
     <div className="small-12 columns">
       <h1>Schedule Performance</h1>
@@ -43,10 +43,9 @@ const CreateEvent = ({ handleSubmit, errorMessage }) => (
               type="text"
               name="location"
               style={{ width: '100%' }}
-              onPlaceSelected={param => props.input.onChange(param.formatted_address)}
+              onPlaceSelected={param => props.input.onChange(param.name + ', ' + param.formatted_address)}
               types={[]}
-            />
-          }
+            />}
           />
         </FormattedFormField>
         <FormattedFormField title="Notes">
@@ -64,16 +63,12 @@ const CreateEvent = ({ handleSubmit, errorMessage }) => (
           />
         </FormattedFormField>
       </form>
-      <div>
-        <span>{errorMessage}</span>
-      </div>
     </div>
   </div>
 );
 
 CreateEvent.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default reduxForm({
