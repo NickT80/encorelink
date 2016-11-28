@@ -50,7 +50,7 @@ const MusicianProfile = ({ handleSubmit }) => (
         </div>
 
         <div className="small-5 small-offset-2 columns">
-          <img className="logo-img" src="/public/img/profile_icon.png" height="10" alt="EncoreLink" />
+          <img className="profileIcon-img" src="/public/img/profile_icon.png" alt="EncoreLink" />
           <input
             className="button"
             type="upload file"
@@ -322,12 +322,12 @@ const MusicianProfile = ({ handleSubmit }) => (
           </label>
           <label className="checkbox-label">
             <Field
-              name="ensernbie requirements"
+              name="ensemble requirements"
               component="input"
               type="checkbox"
-              value="Ensernbie Requirements"
+              value="Ensemble Requirements"
               required
-            />Ensernbie Requirements
+            />Ensemble Requirements
           </label>
           <label className="checkbox-label">
             <Field
@@ -388,7 +388,7 @@ const MusicianProfile = ({ handleSubmit }) => (
 );
 
 
-MusicianProfile.propType = {
+MusicianProfile.propTypes = {
   handleSubmit: PropTypes.func.isRequired
 };
 
