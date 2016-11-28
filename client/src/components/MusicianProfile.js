@@ -50,7 +50,7 @@ const MusicianProfile = ({ handleSubmit }) => (
         </div>
 
         <div className="small-5 small-offset-2 columns">
-          <img className="logo-img" src="/public/img/encorelink-logo.png" alt="EncoreLink" />
+          <img className="logo-img" src="/public/img/profile_icon.png" height="10" alt="EncoreLink" />
           <input
             className="button"
             type="upload file"
