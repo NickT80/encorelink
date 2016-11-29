@@ -9,8 +9,9 @@ function ViewMusician({ data, isFetching }) {
     <div className="row">
       <div className="small-12 columns">
         <h3>{data.username}</h3>
+        <h5>Bio</h5>
         <p>{data.bio}</p>
-        <h4>Instruments</h4>
+        <h5>Instruments</h5>
         { data.instruments && data.instruments.length &&
           <ul>
             {data.instruments.map((instrument, index) =>
