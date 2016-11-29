@@ -3,14 +3,16 @@ import { Link } from 'react-router';
 
 class Header extends React.Component {
   static propTypes = {
-    userId: PropTypes.number,
-    logoutUser: PropTypes.func.isRequired
+    isLoggedIn: PropTypes.bool.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    user: PropTypes.object
   };
 
   render() {
     const loggedIn = (
       <div>
-        Hello, ##User ID: {this.props.userId}##
+        Hello, {this.props.user.email}
+        {' '}
         <button className="button" onClick={this.props.logoutUser}>Log out</button>
       </div>
     );
@@ -20,10 +22,10 @@ class Header extends React.Component {
     return (
       <header className="top-bar">
         <div className="top-bar-left">
-          <img className="logo-img" src="/public/img/encorelink-logo.png" alt="EncoreLink" />
+          <Link to={this.props.isLoggedIn ? '/events' : '/'}><img className="logo-img" src="/public/img/encorelink-logo.png" alt="EncoreLink" /></Link>
         </div>
         <div className="top-bar-right text-right">
-          {this.props.userId ? loggedIn : loggedOut}
+          {this.props.isLoggedIn ? loggedIn : loggedOut}
         </div>
       </header>
     );

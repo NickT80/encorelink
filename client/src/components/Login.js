@@ -5,16 +5,26 @@ import { Field, reduxForm } from 'redux-form';
 
 class Login extends React.Component {
   static propTypes = {
-    errorMessage: PropTypes.string,
     handleSubmit: PropTypes.func.isRequired,
     router: PropTypes.shape({
       push: PropTypes.func.isRequired
+    }).isRequired,
+    location: PropTypes.shape({
+      state: PropTypes.shape({
+        nextPathname: PropTypes.string
+      })
     }).isRequired
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn) {
-      this.props.router.push('/events');
+      const locationState = nextProps.location.state;
+
+      if (locationState && locationState.nextPathname) {
+        this.props.router.push(locationState.nextPathname);
+      } else {
+        this.props.router.push('/events');
+      }
     }
   }
 
@@ -41,7 +51,6 @@ class Login extends React.Component {
             <button className="button secondary" type="submit">Log in</button>
           </form>
           <div>
-            <span>{this.props.errorMessage}</span>
             <Link to="/">Go back to Landing</Link>
           </div>
         </div>

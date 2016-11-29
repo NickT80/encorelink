@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router';
 
 class Register extends React.Component {
   static propTypes = {
-    errorMessage: PropTypes.string,
     registerRequest: PropTypes.func.isRequired,
     router: PropTypes.shape({
       push: PropTypes.func.isRequired
@@ -70,20 +69,18 @@ class Register extends React.Component {
               required
             />
           </label>
-          <label>I am a volunteer
+          <label className="volunteer-check">
             <input type="checkbox"
               checked={this.state.isMusician}
               onChange={this.handleVolunteerChange}
             />
+            I am a volunteer
           </label>
-          <label>By clicking Register, you agree to the site
+          <label className="terms">By clicking Register, you agree to the site
             <Link to="/terms"> terms</Link>
           </label>
           <button className="button secondary" type="submit">Register</button>
         </form>
-        <div>
-          <span>{this.props.errorMessage}</span>
-        </div>
         <p>
           Already have an account?&nbsp;
           <Link to="/login">Log in</Link>

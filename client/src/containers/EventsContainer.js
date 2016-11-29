@@ -1,18 +1,19 @@
-import { connect } from 'react-redux';
-import { loadEvents } from '../actions';
+import Events from '../components/Events';
+import { isMusician, getUserId } from '../reducers/userReducer';
+import gimmeData from '../utils/gimmeData';
 
-import Events from
-'../components/Events';
+function urlFn(state) {
+  if (isMusician(state)) {
+    return 'events';
+  }
 
-const mapStateToProps = (state) => {
+  return `users/${getUserId(state)}/events`;
+}
+
+function mapStateToProps(state) {
   return {
-    isFetching: state.eventManager.isFetching,
-    events: state.eventManager.events
+    isMusician: isMusician(state)
   };
-};
+}
 
-const mapDispatchToProps = {
-  loadEvents
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Events);
+export default gimmeData(urlFn, mapStateToProps)(Events);
