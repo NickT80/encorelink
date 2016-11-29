@@ -7,10 +7,10 @@ const MusicianProfile = ({ handleSubmit }) => (
 
   <div className="row">
     <div className="small-12 columns">
-      <h1>Create Your Profile</h1>
+      <h1>Set Up Profile</h1>
 
       <form className="form-create-event" onSubmit={handleSubmit}>
-        <div className="small-7 small-offset-2 columns">
+        <div className="small-3 small-offset-2 columns">
           <label>Phone Number
             <Field
               name="phone number"
@@ -23,7 +23,7 @@ const MusicianProfile = ({ handleSubmit }) => (
           </label>
         </div>
 
-        <div className="small-5 small-offset-2 columns">
+        <div className="small-3 small-offset-2 columns">
           <label>Date of Birth
             <Field
               name="date of birth"
@@ -50,137 +50,14 @@ const MusicianProfile = ({ handleSubmit }) => (
         </div>
 
         <div className="small-5 small-offset-2 columns">
-          <img className="profileIcon-img" src="/public/img/profile_icon.png" alt="EncoreLink" />
-          <input
-            className="button"
-            type="upload file"
-            value="Upload File"
-          />
-        </div>
-
-        <div className="small-5 small-offset-2 columns">
-          <label>Education
-            <Field
-              name="education"
-              component="input"
-              type="text"
-              placeholder="Education"
-              required
+          <label>Upload Profile picture
+            <img className="profileIcon-img" src="/public/img/profile_icon.png" alt="EncoreLink" />
+            <input
+              className="button"
+              type="upload file"
+              value="Upload File"
             />
           </label>
-        </div>
-
-        <div className="small-5 small-offset-2 columns">
-          <label>University/Convervatory
-            <Field
-              name="university"
-              component="input"
-              type="text"
-              placeholder="University/Convervatory"
-              required
-            />
-          </label>
-        </div>
-
-        <div className="small-12 small-offset-2 columns">
-          <div className="row">
-            <div className="small-12 medium-7 columns">
-              <label>Degree
-                <Field
-                  name="degree"
-                  component="input"
-                  type="text"
-                  placeholder="Degree"
-                  required
-                />
-              </label>
-            </div>
-            <div className="small-12 medium-5 columns">
-              <label>Major
-                <Field
-                  name="major"
-                  component="input"
-                  type="text"
-                  placeholder="Major"
-                  required
-                />
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div className="small-8 small-offset-2 columns">
-          <div className="radio">
-            <label>Year:
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Freshman"
-                  required
-                /> Freshman
-              </label>
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Sophomore"
-                  required
-                /> Sophomore
-              </label>
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Junior"
-                  required
-                /> Junior
-              </label>
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Senior"
-                  required
-                />Senior
-              </label>
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Master"
-                  required
-                />Master
-              </label>
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Doctoral"
-                  required
-                />Doctoral
-              </label>
-              <label className="radio-label">
-                <Field
-                  name="year"
-                  component="input"
-                  type="radio"
-                  value="Alumni"
-                  required
-                />Alumni
-              </label>
-            </label>
-
-            <div>
-              <p>[+] (Add another education institution/degree)</p>
-            </div>
-          </div>
         </div>
 
         <div className="small-12 small-offset-2 columns">
@@ -279,64 +156,6 @@ const MusicianProfile = ({ handleSubmit }) => (
               value="World Music"
               required
             />World Music
-          </label>
-          <label className="checkbox-label">
-            <Field
-              name="others"
-              component="input"
-              type="checkbox"
-              value="Others"
-              required
-            />Others
-          </label>
-        </div>
-
-        <div className="small-12 columns">
-          <label>Why do you want to voluteer:</label>
-          <label className="checkbox-label">
-            <Field
-              name="share music"
-              component="input"
-              type="checkbox"
-              value="Share Music"
-              required
-            />Share Music
-          </label>
-          <label className="checkbox-label">
-            <Field
-              name="gain performance experience"
-              component="input"
-              type="checkbox"
-              value="Gain Performance Experience"
-              required
-            />Gain Performance Experience
-          </label>
-          <label className="checkbox-label">
-            <Field
-              name="teacher suggestion"
-              component="input"
-              type="checkbox"
-              value="Teacher suggestion"
-              required
-            />Teacher suggestion
-          </label>
-          <label className="checkbox-label">
-            <Field
-              name="ensemble requirements"
-              component="input"
-              type="checkbox"
-              value="Ensemble Requirements"
-              required
-            />Ensemble Requirements
-          </label>
-          <label className="checkbox-label">
-            <Field
-              name="curious about the organization"
-              component="input"
-              type="checkbox"
-              value="Curious about the organization"
-              required
-            />Curious about the organization
           </label>
           <label className="checkbox-label">
             <Field
