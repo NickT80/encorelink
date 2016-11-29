@@ -13,7 +13,9 @@ function ViewMusician({ data, isFetching }) {
         <h4>Instruments</h4>
         { data.instruments && data.instruments.length &&
           <ul>
-            {data.instruments.map((instrument) => { return <li>{instrument}</li>; })}
+            {data.instruments.map((instrument, index) =>
+              <li key={index}>{instrument}</li>
+            )}
           </ul>
         }
       </div>
